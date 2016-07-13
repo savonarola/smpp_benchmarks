@@ -1,0 +1,2 @@
+defmodule SmppBenchmarks do
+end
