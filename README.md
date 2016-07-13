@@ -1,24 +1,11 @@
 # SmppBenchmarks
 
-**TODO: Add description**
+Can be run as:
 
-## Installation
+  mix run benchmarks/sync.exs 33333 100000
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+  mix run benchmarks/async.exs 33333 100000 100
 
-  1. Add `smpp_benchmarks` to your list of dependencies in `mix.exs`:
+  mix run benchmarks/oserl_sync.exs 33333 100000
 
-    ```elixir
-    def deps do
-      [{:smpp_benchmarks, "~> 0.1.0"}]
-    end
-    ```
-
-  2. Ensure `smpp_benchmarks` is started before your application:
-
-    ```elixir
-    def application do
-      [applications: [:smpp_benchmarks]]
-    end
-    ```
-
+  mix run benchmarks/oserl_async.exs 33333 100000 100
