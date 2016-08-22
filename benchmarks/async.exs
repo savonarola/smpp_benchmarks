@@ -46,7 +46,6 @@ defmodule Benchmarks.Async do
 
     Logger.info("Starting ESME with window #{window}")
     {:ok, esme} = ESME.start_link(port, self, pdu_count, window)
-    SMPPEX.ESME.send_pdu(esme, SMPPEX.Pdu.Factory.bind_transmitter("system_id", "password"))
 
     Logger.info("Sending #{pdu_count} PDUs...")
     {time, _} = Timer.tc(fn() ->

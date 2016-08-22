@@ -7,11 +7,15 @@ defmodule SMPPBenchmarks.ESME do
   @to {"to", 1, 1}
   @message "hello"
 
+  @system_id "system_id"
+  @password "password"
+
   def start_link(port, waiting_pid, count, window) do
     SMPPEX.ESME.start_link("127.0.0.1", port, {__MODULE__, [waiting_pid, count, window]})
   end
 
   def init([waiting_pid, count, window]) do
+    SMPPEX.ESME.send_pdu(self, SMPPEX.Pdu.Factory.bind_transmitter(@system_id, @password))
     {:ok, %{waiting_pid: waiting_pid, count_to_send: count, count_waiting_resp: 0, window: window}}
   end
 
