@@ -15,7 +15,7 @@ defmodule SMPPBenchmarks.ESME do
   end
 
   def init([waiting_pid, count, window]) do
-    SMPPEX.ESME.send_pdu(self, SMPPEX.Pdu.Factory.bind_transmitter(@system_id, @password))
+    SMPPEX.ESME.send_pdu(self(), SMPPEX.Pdu.Factory.bind_transmitter(@system_id, @password))
     {:ok, %{waiting_pid: waiting_pid, count_to_send: count, count_waiting_resp: 0, window: window}}
   end
 
@@ -33,13 +33,13 @@ defmodule SMPPBenchmarks.ESME do
 
   def handle_resp_timeout(pdu, st) do
     Logger.error("PDU timeout: #{inspect pdu}, terminating")
-    SMPPEX.ESME.stop(self)
+    SMPPEX.ESME.stop(self())
     st
   end
 
   def handle_stop(st) do
     Logger.info("ESME stopped")
-    Kernel.send(st.waiting_pid, {self, :done})
+    Kernel.send(st.waiting_pid, {self(), :done})
     st
   end
 
@@ -47,13 +47,13 @@ defmodule SMPPBenchmarks.ESME do
     cond do
       st.count_to_send > 0 ->
         count_to_send = min(st.window - st.count_waiting_resp, st.count_to_send)
-        :ok = do_send(self, count_to_send)
+        :ok = do_send(self(), count_to_send)
         %{ st | count_waiting_resp: st.window, count_to_send: st.count_to_send - count_to_send }
       st.count_waiting_resp > 0 ->
         st
       true ->
         Logger.info("All PDUs sent, all resps received, terminating")
-        SMPPEX.ESME.stop(self)
+        SMPPEX.ESME.stop(self())
         st
     end
   end

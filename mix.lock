@@ -1,7 +1,6 @@
-%{"common_lib": {:git, "https://github.com/funbox/common_lib.git", "602471ffa281c3fb71e11b42699f2f677d9fcdea", []},
-  "dye": {:hex, :dye, "0.4.1", "e8d4b548fd17b441ebaaa53c823c29026bd17704bc9057304f15befb7e180df3", [:mix], []},
-  "goldrush": {:git, "git://github.com/DeadZen/goldrush.git", "212299233c7e7eb63a97be2777e1c05ebaa58dbe", [tag: "0.1.8"]},
-  "lager": {:git, "https://github.com/basho/lager.git", "8187757388c9adc915379caaab36a2f2ca26e944", []},
+%{"common_lib": {:git, "https://github.com/funbox/common_lib.git", "b9a51cdd2284e16f72edc89d9598b61c014e369b", []},
+  "goldrush": {:git, "https://github.com/basho/goldrush.git", "8f1b715d36b650ec1e1f5612c00e28af6ab0de82", [tag: "0.1.9"]},
+  "lager": {:git, "https://github.com/basho/lager.git", "81eaef0ce98fdbf64ab95665e3bc2ec4b24c7dac", []},
   "oserl": {:git, "https://github.com/funbox/oserl.git", "0300c8337828f37dc549d878bac0482939406ca0", [branch: "v4"]},
-  "ranch": {:hex, :ranch, "1.2.1", "a6fb992c10f2187b46ffd17ce398ddf8a54f691b81768f9ef5f461ea7e28c762", [:make], []},
-  "smppex": {:hex, :smppex, "0.1.0", "412d814df4c269b72f532fccde6679ed5d221c4d14438e3778e75c4fdd350066", [:mix], [{:dye, "~> 0.4.0", [hex: :dye, optional: false]}, {:ranch, "~> 1.2", [hex: :ranch, optional: false]}]}}
+  "ranch": {:hex, :ranch, "1.3.2", "e4965a144dc9fbe70e5c077c65e73c57165416a901bd02ea899cfd95aa890986", [:rebar3], []},
+  "smppex": {:hex, :smppex, "0.1.10", "57d691a2be9ec41f5cafd630adeb574c922396d4646772be939d7a95a174a338", [:mix], [{:ranch, "~> 1.2", [hex: :ranch, optional: false]}]}}

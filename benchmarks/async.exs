@@ -20,13 +20,13 @@ defmodule Benchmarks.Async do
     def handle_pdu(pdu, last_id) do
       case pdu |> SMPPEX.Pdu.command_id |> SMPPEX.Protocol.CommandNames.name_by_id do
         {:ok, :submit_sm} ->
-          SMPPEX.MC.reply(self, pdu, SMPPEX.Pdu.Factory.submit_sm_resp(0, to_string(last_id)))
+          SMPPEX.MC.reply(self(), pdu, SMPPEX.Pdu.Factory.submit_sm_resp(0, to_string(last_id)))
           last_id + 1
         {:ok, :bind_transmitter} ->
-          SMPPEX.MC.reply(self, pdu, SMPPEX.Pdu.Factory.bind_transmitter_resp(0))
+          SMPPEX.MC.reply(self(), pdu, SMPPEX.Pdu.Factory.bind_transmitter_resp(0))
           last_id
         {:ok, :enquire_link} ->
-          SMPPEX.MC.reply(self, pdu, SMPPEX.Pdu.Factory.enquire_link_resp)
+          SMPPEX.MC.reply(self(), pdu, SMPPEX.Pdu.Factory.enquire_link_resp)
           last_id
         _ -> last_id
       end
@@ -45,7 +45,7 @@ defmodule Benchmarks.Async do
     Timer.sleep(50)
 
     Logger.info("Starting ESME with window #{window}")
-    {:ok, esme} = ESME.start_link(port, self, pdu_count, window)
+    {:ok, esme} = ESME.start_link(port, self(), pdu_count, window)
 
     Logger.info("Sending #{pdu_count} PDUs...")
     {time, _} = Timer.tc(fn() ->
