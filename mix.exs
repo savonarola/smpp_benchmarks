@@ -17,8 +17,8 @@ defmodule SmppBenchmarks.Mixfile do
 
   defp deps do
     [
-      {:oserl, git: "https://github.com/funbox/oserl.git", branch: "v4", only: :dev},
-      {:smppex, "~> 0.1.0", only: :dev},
+      {:oserl, git: "https://github.com/funbox/oserl.git"},
+      {:smppex, "~> 2.0.0"}
     ]
   end
 end

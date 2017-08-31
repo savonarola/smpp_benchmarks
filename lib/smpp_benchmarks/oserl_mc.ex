@@ -116,7 +116,7 @@ defmodule SMPPBenchmarks.OserlMC do
   end
 
   def handle_submit_msg(_pdu, %{msg_id: msg_id} = st) do
-    params = [message_id: to_char_list(msg_id)]
+    params = [message_id: to_charlist(msg_id)]
     {:reply, {:ok, params}, st |> Map.put(:msg_id, msg_id + 1)}
   end
 

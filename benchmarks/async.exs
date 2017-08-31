@@ -3,11 +3,13 @@ defmodule Benchmarks.Async do
   require Logger
 
   alias :timer, as: Timer
-  alias SMPPBenchmarks.ESME, as: ESME
 
   defmodule MC do
 
-    use SMPPEX.MC
+    use SMPPEX.Session
+
+    alias SMPPEX.Pdu
+    alias SMPPEX.Pdu.Factory, as: PduFactory
 
     def start(port) do
       SMPPEX.MC.start({__MODULE__, []}, [transport_opts: [port: port]])
@@ -18,19 +20,18 @@ defmodule Benchmarks.Async do
     end
 
     def handle_pdu(pdu, last_id) do
-      case pdu |> SMPPEX.Pdu.command_id |> SMPPEX.Protocol.CommandNames.name_by_id do
-        {:ok, :submit_sm} ->
-          SMPPEX.MC.reply(self(), pdu, SMPPEX.Pdu.Factory.submit_sm_resp(0, to_string(last_id)))
-          last_id + 1
-        {:ok, :bind_transmitter} ->
-          SMPPEX.MC.reply(self(), pdu, SMPPEX.Pdu.Factory.bind_transmitter_resp(0))
-          last_id
-        {:ok, :enquire_link} ->
-          SMPPEX.MC.reply(self(), pdu, SMPPEX.Pdu.Factory.enquire_link_resp)
-          last_id
-        _ -> last_id
+      case Pdu.command_name(pdu) do
+        :submit_sm ->
+          {:ok, [PduFactory.submit_sm_resp(0, to_string(last_id)) |> Pdu.as_reply_to(pdu)], last_id + 1}
+        :bind_transmitter ->
+          {:ok, [PduFactory.bind_transmitter_resp(0) |> Pdu.as_reply_to(pdu)], last_id}
+        :enquire_link ->
+          {:ok, [PduFactory.enquire_link_resp |> Pdu.as_reply_to(pdu)], last_id}
+        _ ->
+          {:ok, last_id}
       end
     end
+
   end
 
   @default_port 33333
@@ -45,7 +46,7 @@ defmodule Benchmarks.Async do
     Timer.sleep(50)
 
     Logger.info("Starting ESME with window #{window}")
-    {:ok, esme} = ESME.start_link(port, self(), pdu_count, window)
+    {:ok, esme} = SMPPBenchmarks.ESME.start_link(port, self(), pdu_count, window)
 
     Logger.info("Sending #{pdu_count} PDUs...")
     {time, _} = Timer.tc(fn() ->
@@ -68,4 +69,3 @@ defmodule Benchmarks.Async do
 end
 
 System.argv |> Enum.map(&String.to_integer/1) |> Benchmarks.Async.run
-
