@@ -3,4 +3,4 @@
   "lager": {:git, "https://github.com/basho/lager.git", "81eaef0ce98fdbf64ab95665e3bc2ec4b24c7dac", []},
   "oserl": {:git, "https://github.com/funbox/oserl.git", "4bb3d96dd2bab65c75c79ce58161ef4056cb798b", []},
   "ranch": {:hex, :ranch, "1.4.0", "10272f95da79340fa7e8774ba7930b901713d272905d0012b06ca6d994f8826b", [], [], "hexpm"},
-  "smppex": {:hex, :smppex, "2.0.0", "7c5259c588e29afe3b394462d6cff128f189dcc61b699f51681317f016c8748a", [], [{:ranch, "~> 1.4", [hex: :ranch, repo: "hexpm", optional: false]}], "hexpm"}}
+  "smppex": {:hex, :smppex, "2.2.0", "cb9231463ce5a97ff45f63acbe07bb8d07d1e5d4415ba3325688a0f4827c3809", [:mix], [{:ranch, "~> 1.4", [hex: :ranch, repo: "hexpm", optional: false]}], "hexpm"}}

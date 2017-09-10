@@ -24,8 +24,6 @@ defmodule Benchmarks.Sync do
           {:ok, [PduFactory.submit_sm_resp(0, to_string(last_id)) |> Pdu.as_reply_to(pdu)], last_id + 1}
         :bind_transmitter ->
           {:ok, [PduFactory.bind_transmitter_resp(0) |> Pdu.as_reply_to(pdu)], last_id}
-        :enquire_link ->
-          {:ok, [PduFactory.enquire_link_resp |> Pdu.as_reply_to(pdu)], last_id}
         _ ->
           {:ok, last_id}
       end
