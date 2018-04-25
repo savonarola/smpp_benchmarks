@@ -1,6 +1,8 @@
-%{"common_lib": {:git, "https://github.com/funbox/common_lib.git", "b9a51cdd2284e16f72edc89d9598b61c014e369b", []},
+%{
+  "common_lib": {:git, "https://github.com/funbox/common_lib.git", "b9a51cdd2284e16f72edc89d9598b61c014e369b", []},
   "goldrush": {:git, "https://github.com/basho/goldrush.git", "8f1b715d36b650ec1e1f5612c00e28af6ab0de82", [tag: "0.1.9"]},
   "lager": {:git, "https://github.com/basho/lager.git", "81eaef0ce98fdbf64ab95665e3bc2ec4b24c7dac", []},
   "oserl": {:git, "https://github.com/funbox/oserl.git", "4bb3d96dd2bab65c75c79ce58161ef4056cb798b", []},
-  "ranch": {:hex, :ranch, "1.4.0", "10272f95da79340fa7e8774ba7930b901713d272905d0012b06ca6d994f8826b", [], [], "hexpm"},
-  "smppex": {:hex, :smppex, "2.2.0", "cb9231463ce5a97ff45f63acbe07bb8d07d1e5d4415ba3325688a0f4827c3809", [:mix], [{:ranch, "~> 1.4", [hex: :ranch, repo: "hexpm", optional: false]}], "hexpm"}}
+  "ranch": {:hex, :ranch, "1.5.0", "f04166f456790fee2ac1aa05a02745cc75783c2bfb26d39faf6aefc9a3d3a58a", [:rebar3], [], "hexpm"},
+  "smppex": {:hex, :smppex, "2.2.4", "58d9ceb856a703aa25d27daf208eab64b72228ceba80a495bb96e0ad45c6f631", [:mix], [{:ranch, "~> 1.3", [hex: :ranch, repo: "hexpm", optional: false]}], "hexpm"},
+}
