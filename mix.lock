@@ -3,6 +3,6 @@
   "goldrush": {:git, "https://github.com/basho/goldrush.git", "8f1b715d36b650ec1e1f5612c00e28af6ab0de82", [tag: "0.1.9"]},
   "lager": {:git, "https://github.com/basho/lager.git", "81eaef0ce98fdbf64ab95665e3bc2ec4b24c7dac", []},
   "oserl": {:git, "https://github.com/funbox/oserl.git", "4bb3d96dd2bab65c75c79ce58161ef4056cb798b", []},
-  "ranch": {:hex, :ranch, "1.5.0", "f04166f456790fee2ac1aa05a02745cc75783c2bfb26d39faf6aefc9a3d3a58a", [:rebar3], [], "hexpm"},
-  "smppex": {:hex, :smppex, "2.2.4", "58d9ceb856a703aa25d27daf208eab64b72228ceba80a495bb96e0ad45c6f631", [:mix], [{:ranch, "~> 1.3", [hex: :ranch, repo: "hexpm", optional: false]}], "hexpm"},
+  "ranch": {:hex, :ranch, "1.5.0", "f04166f456790fee2ac1aa05a02745cc75783c2bfb26d39faf6aefc9a3d3a58a", [:rebar3], [], "hexpm", "86d40fc42aa47bcb6952ddf1dbfd3da04b5ba69afb65c322c99845913250b11f"},
+  "smppex": {:hex, :smppex, "2.2.4", "58d9ceb856a703aa25d27daf208eab64b72228ceba80a495bb96e0ad45c6f631", [:mix], [{:ranch, "~> 1.3", [hex: :ranch, repo: "hexpm", optional: false]}], "hexpm", "2c1a8a31181eb14359c7e99cef02713a032bf34f154de2f0b2f0dcbbf76d8a75"},
 }
